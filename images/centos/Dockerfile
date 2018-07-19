@@ -1,10 +1,11 @@
 ARG INSTALL_VERSION
 FROM centos:$INSTALL_VERSION
+MAINTAINER llh
 
 COPY timezone/Shanghai /etc/localtime
 
-RUN yum -y install wget
-RUN mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup \
+RUN yum -y install wget \
+    && mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup \
     && wget -P /etc/yum.repos.d http://mirrors.163.com/.help/CentOS7-Base-163.repo
 RUN yum -y install openssh-server make which bzip2 gcc curl curl-devel crontabs net-tools \
     && yum clean all
