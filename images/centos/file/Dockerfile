@@ -13,7 +13,8 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
  && echo '123456' | passwd --stdin root \
  && ssh-keygen -t rsa -b 2048 -f /etc/ssh/ssh_host_rsa_key -N '' \
  && ssh-keygen -t ecdsa -f /etc/ssh/ssh_host_ecdsa_key -N '' \
- && ssh-keygen -t dsa -f /etc/ssh/ssh_host_ed25519_key -N ''
+ && ssh-keygen -t dsa -f /etc/ssh/ssh_host_ed25519_key -N '' \
+ && sed -i 's/session\s*required\s*pam_loginuid\.so/#session    required   pam_loginuid.so/' /etc/pam.d/crond
 
 EXPOSE 22
 
