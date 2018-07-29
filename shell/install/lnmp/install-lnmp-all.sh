@@ -2,13 +2,13 @@
 
 currentPath=$(cd `dirname $0`; pwd);
 nginxVersion=1.14.0
-phpVersion=7.2.5
+phpVersion=7.1.11
 mysqlVersion=5.7.18
 redisVersion=4.0.10
 
 while true
 do
-    echo '--------------选择LNMP版本--------------';
+    echo '-------------------选择LNMP版本-------------------';
     echo;
 
     # nginx版本选择
@@ -46,22 +46,27 @@ do
     fi
 done
 
+echo;
 echo "3秒后开始安装CENTOS:7镜像....................................";
 sleep 3;
 sh "$currentPath"/../../../images/centos/build.centos.sh 7
 
+echo;
 echo "3秒后开始安装NGINX:${nginxVersion}镜像....................................";
 sleep 3;
 sh "$currentPath"/../../../images/nginx/build.nginx.sh "$nginxVersion"
 
+echo;
 echo "3秒后开始安装PHP:${phpVersion}镜像....................................";
 sleep 3;
 sh "$currentPath"/../../../images/php/build.php.sh "$phpVersion"
 
+echo;
 echo "3秒后开始安装MYSQL:${mysqlVersion}镜像....................................";
 sleep 3;
 sh "$currentPath"/../../../images/mysql/build.mysql.sh "$mysqlVersion"
 
+echo;
 echo "3秒后开始安装REDIS:${redisVersion}镜像....................................";
 sleep 3;
 sh "$currentPath"/../../../images/redis/build.redis.sh "$redisVersion"
