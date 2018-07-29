@@ -8,7 +8,8 @@ redisVersion=4.0.10
 
 while true
 do
-    echo '--------------选择LNMP版本--------------\n';
+    echo '--------------选择LNMP版本--------------';
+    echo;
 
     # nginx版本选择
     read -p "请选择NGINX版本，不填默认版本为（${nginxVersion}）：" tempVersion
@@ -37,7 +38,8 @@ do
         redisVersion=${tempVersion};
     fi
 
-    echo "\n您当前选择的版本为：NGINX(${nginxVersion}),PHP(${phpVersion}),MYSQL(${mysqlVersion}),REDIS(${redisVersion}) \n";
+    echo "\n您当前选择的版本为：NGINX(${nginxVersion}),PHP(${phpVersion}),MYSQL(${mysqlVersion}),REDIS(${redisVersion}) ";
+    echo;
     read -p "请确认版本信息，继续安装请输入y，重新选择请按任意键：" confirm;
     if [ "$confirm" = "y" ];then
         break;
@@ -64,5 +66,6 @@ echo "3秒后开始安装REDIS:${redisVersion}镜像............................
 sleep 3;
 sh "$currentPath"/../../../images/redis/build.redis.sh "$redisVersion"
 
-echo "\n安装完成，如有失败，请重新安装！！";
+echo;
+echo "安装完成，如有失败，请重新安装！！";
 

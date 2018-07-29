@@ -4,10 +4,13 @@ currentPath=$(cd `dirname $0`; pwd);
 
 while true
 do
-    echo '--------------LNMP镜像向导--------------\n';
+    echo '--------------LNMP镜像向导--------------';
+    echo;
     echo '1 安装全部镜像 ';
-    echo '2 自定义选择镜像 \n';
-    echo 'q 退出 \n';
+    echo '2 自定义选择镜像 ';
+    echo;
+    echo 'q 退出 ';
+    echo;
     read -p '请输入要进行的操作：' option
 
     case ${option} in
