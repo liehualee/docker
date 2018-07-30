@@ -38,7 +38,8 @@ do
         redisVersion=${tempVersion};
     fi
 
-    echo "\n您当前选择的版本为：NGINX(${nginxVersion}),PHP(${phpVersion}),MYSQL(${mysqlVersion}),REDIS(${redisVersion}) ";
+    echo;
+    echo "您当前选择的版本为：NGINX(${nginxVersion}),PHP(${phpVersion}),MYSQL(${mysqlVersion}),REDIS(${redisVersion}) ";
     echo;
     read -p "请确认版本信息，继续安装请输入y，重新选择请按任意键：" confirm;
     if [ "$confirm" = "y" ];then

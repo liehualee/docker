@@ -1,5 +1,6 @@
 ARG INSTALL_VERSION
 FROM nginx:$INSTALL_VERSION
+MAINTAINER llh
 
 COPY nginx.conf /etc/nginx/nginx.conf
 
