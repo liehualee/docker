@@ -1,2 +1,2 @@
 .idea/
-images/redis/file/redis-*.conf
+dockerfile/redis/redis-*.conf

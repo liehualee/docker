@@ -25,7 +25,7 @@ RUN wget https://svwh.dl.sourceforge.net/project/mcrypt/Libmcrypt/2.5.8/libmcryp
  && rm -rf libmcrypt-2.5.8*
 
 # 安装php
-COPY ./php.ini /root/php.ini
+COPY php.ini /root/php.ini
 RUN wget "http://cn2.php.net/distributions/php-$INSTALL_PHP_VERSION.tar.gz" \
  && tar zxf "php-$INSTALL_PHP_VERSION.tar.gz" \
  && cd "php-$INSTALL_PHP_VERSION" \

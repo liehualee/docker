@@ -8,4 +8,4 @@ docker build \
     --tag="my-php:$PHP_VERSION" \
     --build-arg="INSTALL_PHP_VERSION=$PHP_VERSION" \
     --build-arg="SYSTEM_VERSION=$SYSTEM_VERSION" \
-    "$currentPath"/file/
+    "$currentPath"/../../dockerfile/php/

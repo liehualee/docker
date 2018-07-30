@@ -49,27 +49,27 @@ done
 echo;
 echo "3秒后开始安装CENTOS:7镜像....................................";
 sleep 3;
-sh "$currentPath"/../../../images/centos/build.centos.sh 7
+sh "$currentPath"/../../build-dockerfile/build.centos.sh 7
 
 echo;
 echo "3秒后开始安装NGINX:${nginxVersion}镜像....................................";
 sleep 3;
-sh "$currentPath"/../../../images/nginx/build.nginx.sh "$nginxVersion"
+sh "$currentPath"/../../build-dockerfile/build.nginx.sh "$nginxVersion"
 
 echo;
 echo "3秒后开始安装PHP:${phpVersion}镜像....................................";
 sleep 3;
-sh "$currentPath"/../../../images/php/build.php.sh "$phpVersion"
+sh "$currentPath"/../../build-dockerfile/build.php.sh "$phpVersion"
 
 echo;
 echo "3秒后开始安装MYSQL:${mysqlVersion}镜像....................................";
 sleep 3;
-sh "$currentPath"/../../../images/mysql/build.mysql.sh "$mysqlVersion"
+sh "$currentPath"/../../build-dockerfile/build.mysql.sh "$mysqlVersion"
 
 echo;
 echo "3秒后开始安装REDIS:${redisVersion}镜像....................................";
 sleep 3;
-sh "$currentPath"/../../../images/redis/build.redis.sh "$redisVersion"
+sh "$currentPath"/../../build-dockerfile/build.redis.sh "$redisVersion"
 
 echo;
 echo "安装完成，如有失败，请重新安装！！";
