@@ -8,7 +8,8 @@ do
     echo '- 必须软件：wget                             -';
     echo '----------------------------------------------';
     echo;
-    echo '1 安装LNMP镜像 ';
+    echo '1 安装自定义镜像 ';
+    echo '2 安装LNMP镜像 ';
     echo;
     echo 'q 退出';
     echo;
@@ -16,6 +17,9 @@ do
 
     case ${option} in
     '1')
+        sh "$currentPath"/shell/install/custom/install-custom.sh;
+        ;;
+    '2')
         sh "$currentPath"/shell/install/lnmp/install-lnmp.sh;
         ;;
     'q')
