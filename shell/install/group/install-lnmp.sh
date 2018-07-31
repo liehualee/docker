@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
 
 currentPath=$(cd `dirname $0`; pwd);
-nginxVersion=1.14.0
-phpVersion=7.1.11
-mysqlVersion=5.7.18
-redisVersion=4.0.10
+source "$currentPath"/../install-version.conf
 
 while true
 do

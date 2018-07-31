@@ -4,7 +4,7 @@ currentPath=$(cd `dirname $0`; pwd);
 
 while true
 do
-    echo '--------------Docker辅助工具--------------';
+    echo '--------------Docker辅助工具------------------';
     echo '- 必须软件：wget                             -';
     echo '----------------------------------------------';
     echo;
