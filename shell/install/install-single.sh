@@ -9,7 +9,7 @@ redisVersion=4.0.10
 
 while true
 do
-    echo '--------------安装自定义镜像--------------';
+    echo '--------------单一镜像列表--------------';
     echo;
     echo '1 CENTOS镜像';
     echo '2 NGINX镜像 ';

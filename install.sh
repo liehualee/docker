@@ -4,12 +4,12 @@ currentPath=$(cd `dirname $0`; pwd);
 
 while true
 do
-    echo '--------------Docker镜像生成工具--------------';
+    echo '--------------Docker辅助工具--------------';
     echo '- 必须软件：wget                             -';
     echo '----------------------------------------------';
     echo;
-    echo '1 安装自定义镜像 ';
-    echo '2 安装LNMP镜像 ';
+    echo '1 安装单一镜像 ';
+    echo '2 安装组合镜像 ';
     echo;
     echo 'q 退出';
     echo;
@@ -17,10 +17,10 @@ do
 
     case ${option} in
     '1')
-        sh "$currentPath"/shell/install/custom/install-custom.sh;
+        sh "$currentPath"/shell/install/install-single.sh;
         ;;
     '2')
-        sh "$currentPath"/shell/install/lnmp/install-lnmp.sh;
+        sh "$currentPath"/shell/install/install-group.sh;
         ;;
     'q')
         exit;
