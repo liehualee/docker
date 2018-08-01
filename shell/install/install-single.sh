@@ -28,7 +28,7 @@ do
 
         echo "3秒后开始安装CENTOS:${centosVersion}镜像....................................";
         sleep 3;
-        sh "$currentPath"/../build-dockerfile/build.centos.sh "$centosVersion"
+        sh "$currentPath"/../build-dockerfile/build-centos.sh "$centosVersion"
         ;;
     '2')
         # nginx版本选择
@@ -40,7 +40,7 @@ do
 
         echo "3秒后开始安装NGINX:${nginxVersion}镜像....................................";
         sleep 3;
-        sh "$currentPath"/../build-dockerfile/build.nginx.sh "$nginxVersion"
+        sh "$currentPath"/../build-dockerfile/build-nginx.sh "$nginxVersion"
         ;;
 
     '3')
@@ -53,10 +53,10 @@ do
 
         echo "3秒后开始安装CENTOS:7镜像....................................";
         sleep 3;
-        sh "$currentPath"/../build-dockerfile/build.centos.sh 7
+        sh "$currentPath"/../build-dockerfile/build-centos.sh 7
         echo "3秒后开始安装PHP:${phpVersion}镜像....................................";
         sleep 3;
-        sh "$currentPath"/../build-dockerfile/build.php.sh "$phpVersion"
+        sh "$currentPath"/../build-dockerfile/build-php.sh "$phpVersion"
         ;;
     '4')
         # mysql版本选择
@@ -68,7 +68,7 @@ do
 
         echo "3秒后开始安装MYSQL:${mysqlVersion}镜像....................................";
         sleep 3;
-        sh "$currentPath"/../build-dockerfile/build.mysql.sh "$mysqlVersion"
+        sh "$currentPath"/../build-dockerfile/build-mysql.sh "$mysqlVersion"
         ;;
     '5')
         # redis版本选择
@@ -80,7 +80,7 @@ do
 
         echo "3秒后开始安装REDIS:${redisVersion}镜像....................................";
         sleep 3;
-        sh "$currentPath"/../build-dockerfile/build.redis.sh "$redisVersion"
+        sh "$currentPath"/../build-dockerfile/build-redis.sh "$redisVersion"
         ;;
     'q')
         break;
