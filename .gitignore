@@ -1,2 +1,3 @@
 .idea/
 dockerfile/redis/redis-*.conf
+_output/

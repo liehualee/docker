@@ -1,0 +1,60 @@
+version: '3.3'
+
+services:
+
+  web:
+    image: my-php:7.1.11
+    container_name: local-${projectName}
+    volumes:
+      - ${projectDir}:/codes/${projectName}
+    # 连接成功时，会自动切换到该目录，即项目根目录
+    working_dir: /codes/${projectName}
+    links:
+      - redis:local-redis
+      - mysql:local-mysql
+
+  cron:
+    image: my-php:7.1.11
+    container_name: local-${projectName}-cron
+    volumes:
+      - ${projectDir}:/codes/${projectName}
+    # 连接成功时，会自动切换到该目录，即项目根目录
+    working_dir: /codes/${projectName}
+    links:
+      - redis:local-redis
+      - mysql:local-mysql
+    command:
+      - /usr/sbin/crond
+      - -n
+
+  redis:
+    image: my-redis:4.0.10
+    container_name: local-${projectName}-redis
+    # todo: 找出network_mode 和 networks 的差别和具体场景
+    volumes:
+      - ${projectDir}/volumes/redis:/data
+    command:
+      - /etc/redis/redis.conf
+
+  mysql:
+    image: my-mysql:5.7.18
+    container_name: local-${projectName}-mysql
+    ports:
+      - "3307:3306"
+    volumes:
+      - ${projectDir}/volumes/mysql:/var/lib/mysql
+    command:
+      - --explicit_defaults_for_timestamp
+
+  nginx:
+    image: my-nginx:1.14.0
+    volumes:
+      - ${projectDir}:/codes/${projectName}
+      - ${baseDir}/_output/config/nginx:/etc/nginx/conf.d
+    ports:
+      - "81:80"
+    container_name: local-${projectName}-nginx
+    command:
+      - /etc/nginx/nginx.conf
+    links:
+      - web
