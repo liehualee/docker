@@ -21,6 +21,9 @@ then
     sed -i "s#\${projectDir}#${projectDir}#g" "$baseDir"/_output/docker-compose.yml
     sed -i "s#\${baseDir}#${baseDir}#g" "$baseDir"/_output/docker-compose.yml
 
+    echo "127.0.0.1      local-$projectName.com" >> /etc/hosts
+    echo "::1            local-$projectName.com" >> /etc/hosts
+
     echo -e "\033[32m 部署成功！项目访问地址：http://local-${projectName}.com:81 \033[0m"
     echo "Mac系统请输入sudo vi /etc/hosts，在hosts文件中补充如下代码"
     echo "127.0.0.1      local-$projectName.com";
