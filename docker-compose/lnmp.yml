@@ -52,7 +52,7 @@ services:
       - ${projectDir}:/codes/${projectName}
       - ${baseDir}/_output/config/nginx:/etc/nginx/conf.d
     ports:
-      - "81:80"
+      - "666:80"
     container_name: local-${projectName}-nginx
     command:
       - /etc/nginx/nginx.conf
