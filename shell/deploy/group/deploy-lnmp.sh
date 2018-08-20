@@ -8,13 +8,13 @@ echo;
 serverName=`curl icanhazip.com`
 read -p '请输入待部署的项目目录：' projectDir
 read -p "请输入服务器名，不填默认为本机公网IP($serverName)：" tempServerName
+echo;
 
 if ! test -z ${tempServerName}
 then
     serverName=${tempServerName};
 fi
 
-echo;
 projectName=$(echo `basename "$projectDir"`);
 
 if [ -d "$projectDir" ]
