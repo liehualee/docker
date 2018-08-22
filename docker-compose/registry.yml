@@ -1,0 +1,22 @@
+version: '3.3'
+
+services:
+
+  registry:
+    image: registry:2.6.2
+    container_name: local-registry
+    restart: always
+    ports:
+      - 5000:5000
+    volumes:
+      - /registry/data:/var/lib/registry
+      - /registry/password:/auth/password
+      #- /registry/certs:/certs
+    environment:
+      - REGISTRY_STORAGE_DELETE_ENABLED=true
+      # yum install -y httpd-tools => htpasswd -Bbn admin admin >> /registry/password
+      #- REGISTRY_AUTH=htpasswd
+      #- REGISTRY_AUTH_HTPASSWD_REALM=basic
+      #- REGISTRY_AUTH_HTPASSWD_PATH=/auth/password
+      #- REGISTRY_HTTP_TLS_CERTIFICATE=/certs/auth.crt
+      #- REGISTRY_HTTP_TLS_KEY=/certs/auth.key
