@@ -34,24 +34,24 @@ do
         fi
 
         echo "$serverName" > "$currentPath"/server-name.conf
-        echo "\033[32m 启动私有仓库命令： docker-compose --file=$currentPath/../../docker-compose/registry.yml up \033[0m";
-        echo "\033[32m 私有仓库地址：$serverName:5000 \033[0m";
-        echo "\033[32m 如需在其他机器访问，需在那台机器的docker配置文件(linux系统为/etc/docker/daemon.json)中添加：\"insecure-registries\":[\"$serverName:5000\"] \033[0m";
+        echo -e "\033[32m 启动私有仓库命令： docker-compose --file=$currentPath/../../docker-compose/registry.yml up \033[0m";
+        echo -e "\033[32m 私有仓库地址：$serverName:5000 \033[0m";
+        echo -e "\033[32m 如需在其他机器访问，需在那台机器的docker配置文件(linux系统为/etc/docker/daemon.json)中添加：\"insecure-registries\":[\"$serverName:5000\"] \033[0m";
         echo;
         ;;
     '2')
         registries=`curl "$serverName":5000/v2/_catalog`;
         echo;
-        echo "\033[32m 镜像仓库列表： \033[0m";
-        echo "\033[32m $registries \033[0m";
+        echo -e "\033[32m 镜像仓库列表： \033[0m";
+        echo -e "\033[32m $registries \033[0m";
         echo;
         ;;
     '3')
         read -p "请输入要查询的镜像名称：" image
         tags=`curl "$serverName":5000/v2/"$image"/tags/list`;
         echo;
-        echo "\033[32m 镜像版本列表： \033[0m";
-        echo "\033[32m $tags \033[0m";
+        echo -e "\033[32m 镜像版本列表： \033[0m";
+        echo -e "\033[32m $tags \033[0m";
         echo;
         ;;
     '4')
