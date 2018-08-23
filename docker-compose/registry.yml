@@ -10,7 +10,7 @@ services:
       - 5000:5000
     volumes:
       - /registry/data:/var/lib/registry
-      - /registry/password:/auth/password
+      #- /registry/password:/auth/password
       #- /registry/certs:/certs
     environment:
       - REGISTRY_STORAGE_DELETE_ENABLED=true

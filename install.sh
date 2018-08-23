@@ -11,6 +11,7 @@ do
     echo '1 安装单一镜像 ';
     echo '2 安装组合镜像 ';
     echo '3 一键部署项目 ';
+    echo '4 管理私有仓库 ';
     echo;
     echo 'q 退出';
     echo;
@@ -25,6 +26,9 @@ do
         ;;
     '3')
         sh "$currentPath"/shell/deploy/deploy-menu.sh;
+        ;;
+    '4')
+        sh "$currentPath"/shell/registry/menu.sh;
         ;;
     'q')
         exit;

@@ -1,3 +1,4 @@
 .idea/
-dockerfile/redis/redis-*.conf
 _output/
+dockerfile/redis/redis-*.conf
+shell/registry/server-name.conf
