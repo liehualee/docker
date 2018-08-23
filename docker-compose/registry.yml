@@ -12,8 +12,8 @@ services:
       - /registry/data:/var/lib/registry
       #- /registry/password:/auth/password
       #- /registry/certs:/certs
-    environment:
-      - REGISTRY_STORAGE_DELETE_ENABLED=true
+    #environment:
+      #- REGISTRY_STORAGE_DELETE_ENABLED=true
       # yum install -y httpd-tools => htpasswd -Bbn admin admin >> /registry/password
       #- REGISTRY_AUTH=htpasswd
       #- REGISTRY_AUTH_HTPASSWD_REALM=basic
