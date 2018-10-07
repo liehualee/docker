@@ -25,7 +25,6 @@ RUN wget https://svwh.dl.sourceforge.net/project/mcrypt/Libmcrypt/2.5.8/libmcryp
  && rm -rf libmcrypt-2.5.8*
 
 # 安装php
-COPY php.ini /root/php.ini
 RUN wget "http://cn2.php.net/distributions/php-$INSTALL_PHP_VERSION.tar.gz" \
  && tar zxf "php-$INSTALL_PHP_VERSION.tar.gz" \
  && cd "php-$INSTALL_PHP_VERSION" \
@@ -52,19 +51,24 @@ RUN wget "http://cn2.php.net/distributions/php-$INSTALL_PHP_VERSION.tar.gz" \
     --with-libxml-dir  --with-xsl --enable-zip \
     --enable-mysqlnd-compression-support --with-pear \
  && make \
- && make install \
+ && make install
+
 # php.ini配置文件处理
- && cd - \
- && cp "php-$INSTALL_PHP_VERSION/php.ini-production" /usr/local/php/lib/php.ini \
+COPY php.ini /root/php.ini
+RUN cp "php-$INSTALL_PHP_VERSION/php.ini-production" /usr/local/php/lib/php.ini \
  && cat /root/php.ini >> /usr/local/php/lib/php.ini \
 # php软链接
  && ln -fs /usr/local/php/bin/php /usr/bin/ \
+# 兼容php5与php7版本fpm处理,www.conf文件位置不同
+ && mkdir -p /usr/local/php/etc/php-fpm.d \
+ && confFile=php-$INSTALL_PHP_VERSION/sapi/fpm/www.conf.in  \
+ && if [ -f "$confFile" ];then cp "$confFile" /usr/local/php/etc/php-fpm.d/www.conf;fi  \
+ && confFile=/usr/local/php/etc/php-fpm.d/www.conf.default  \
+ && if [ -f "$confFile" ];then cp "$confFile" /usr/local/php/etc/php-fpm.d/www.conf;fi  \
+ && cp /usr/local/php/etc/php-fpm.conf.default /usr/local/php/etc/php-fpm.conf \
+ && sed -i 's/listen\s*=\s*127\.0\.0\.1\:9000/listen = [::]:9000/' /usr/local/php/etc/php-fpm.conf \
+ && sed -i 's/listen\s*=\s*127\.0\.0\.1\:9000/listen = [::]:9000/' /usr/local/php/etc/php-fpm.d/www.conf \
  && rm -rf php-$INSTALL_PHP_VERSION*
-
-# php-fpm 配置文件处理
-RUN cp /usr/local/php/etc/php-fpm.conf.default /usr/local/php/etc/php-fpm.conf \
- && cp /usr/local/php/etc/php-fpm.d/www.conf.default /usr/local/php/etc/php-fpm.d/www.conf \
- && sed -i 's/listen\s*=\s*127\.0\.0\.1\:9000/listen = [::]:9000/' /usr/local/php/etc/php-fpm.d/www.conf
 
 # 安装imagick (调用ImageMagick)
 # 参考：http://pecl.php.net/package/imagick
@@ -77,5 +81,17 @@ RUN wget http://104.236.228.160/get/imagick-3.4.3.tgz \
  && make install \
  && cd - \
  && rm -rf imagick-3.4.3*
+
+# 安装redis扩展 (Yii框架可不安装，框架自带驱动)
+# 参考：http://pecl.php.net/package/redis
+RUN wget http://pecl.php.net/get/redis-4.1.1.tgz \
+ && tar zxf redis-4.1.1.tgz \
+ && cd redis-4.1.1 \
+ && /usr/local/php/bin/phpize \
+ && ./configure --with-php-config=/usr/local/php/bin/php-config \
+ && make \
+ && make install \
+ && cd - \
+ && rm -rf redis-4.1.1*
 
 CMD /usr/local/php/sbin/php-fpm --nodaemonize
