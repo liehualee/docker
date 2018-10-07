@@ -50,6 +50,7 @@ RUN wget "http://cn2.php.net/distributions/php-$INSTALL_PHP_VERSION.tar.gz" \
     --enable-sysvsem --enable-sysvshm --enable-wddx \
     --with-libxml-dir  --with-xsl --enable-zip \
     --enable-mysqlnd-compression-support --with-pear \
+    --with-mysql --with-mysqli \
  && make \
  && make install
 
